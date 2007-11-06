@@ -1,7 +1,11 @@
 {% extends "projects/base.html" %}
 
 {% block main_content %}
-    <p>Sort by: <a href="/projects/by_name">name</a> <a href="/projects/by_date">date</a></p>
+    <p>Sort by:
+        <a href="/projects/by_name">name</a>
+        <a href="/projects/by_date">date</a>
+        <a href="/projects/by_grant">grant</a>
+    </p>
     {% for project in projects %}
         <h1>{{ project.title }}
         //
@@ -22,12 +26,20 @@
         </h1>
         <p>
         {% for person in project.people.all %}
-           {{ person }}
+            {% if person.website %}
+                <a href="{{person.website}}">{{ person }}</a>{% if not forloop.last %},{% endif %}
+            {% else %}
+                {% if person.email %}
+                    <a href="mailto:{{ person.email }}">{{ person }}</a>{% if not forloop.last %},{% endif %}
+                {% else %}
+                    {{ person }}{% if not forloop.last %},{% endif %}
+                {% endif %}
+            {% endif %}
         {% endfor %}
         </p>
         <p>{{ project.description }}</p>
         {% for paper in project.papers.all %}
-            {{ paper }}
+            <a href="{{ paper.get_paper_url }}">{{ paper }}</a>
         {% endfor %}
     {% endfor %}
 {% endblock %}

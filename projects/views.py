@@ -10,3 +10,27 @@ def index(request):
     return render_to_response('projects/index.html',
         { 'projects' : projects },
         context_instance=RequestContext(request))
+        
+def by_name(request):
+    projects = Project.objects.all()
+    projects = list(projects)
+    projects.sort(key=lambda x: x.title)
+    return render_to_response('projects/index.html',
+        { 'projects' : projects },
+        context_instance=RequestContext(request))
+        
+def by_date(request):
+    projects = Project.objects.all()
+    projects = list(projects)
+    projects.sort(key=lambda x: x.start_date)
+    return render_to_response('projects/index.html',
+        { 'projects' : projects },
+        context_instance=RequestContext(request))
+        
+def by_grant(request):
+    projects = Project.objects.all()
+    projects = list(projects)
+    projects.sort(key=lambda x: x.grant)
+    return render_to_response('projects/index.html',
+        { 'projects' : projects },
+        context_instance=RequestContext(request))
