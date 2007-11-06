@@ -1,0 +1,95 @@
+body {
+    font-family: Verdana, Geneva, Arial, sans-serif;
+    font-size: small;
+    font-weight: normal;
+}
+
+#header img {
+    float: left;
+}
+
+#header_banner {
+    background: url("/site_media/images/header.png") repeat;
+    color: #ffcc00;
+    display: block;
+    font-size: 1.3em;
+    font-weight: bold;
+    position: relative;
+    height: 110px;
+    margin-left: 115px;
+}
+
+#header_banner p {
+    position: absolute;
+    bottom: -10px;
+    padding-left: .25em;
+}
+
+#header_banner ul {
+    margin: 0;
+    padding:10px 10px 0;
+    list-style: none;
+    float: right;
+    font-size: .75em;
+    position: absolute;
+    bottom: 0px;
+    right: -9px;
+}
+
+#header_banner li {
+    float: left;
+    background: url("/site_media/images/tab_left.png") no-repeat left top;
+    margin: 0;
+    padding:0 0 0 18px;
+}
+
+#header_banner a {
+    display:block;
+    color: blue;
+    text-decoration: none;
+    background:url("/site_media/images/tab_right.png") no-repeat right top;
+    padding: 5px 19px 4px 0px;
+    font-weight: bold;
+}
+
+#header_banner a:hover {
+    text-decoration: underline;
+}
+
+#header_banner a:visited {
+    color: #000099;
+}
+
+#header_banner #current {
+    background-image: url("/site_media/images/tab_current_left.png");
+}
+
+#header_banner #current a {
+    background-image: url("/site_media/images/tab_current_right.png");
+    color: black;
+    padding-bottom: 5px;
+}
+
+#content {
+    clear: both;
+    padding: .1em;
+    padding-left: 1.75em;
+}
+
+#content h1 {
+    font-size: 1.4em;
+}
+#content h2 {
+    font-size: 1.2em;
+}
+#content h3 {
+    font-size: 1.15em;
+}
+
+#footer {
+    margin-top: 1em;
+    padding-top: .75em;
+    border-top: thin dotted black;
+    clear: both;
+    text-align: center;
+}

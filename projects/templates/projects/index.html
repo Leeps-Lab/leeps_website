@@ -1,0 +1,33 @@
+{% extends "projects/base.html" %}
+
+{% block main_content %}
+    <p>Sort by: <a href="/projects/by_name">name</a> <a href="/projects/by_date">date</a></p>
+    {% for project in projects %}
+        <h1>{{ project.title }}
+        //
+        <small>
+        {% if project.start_date %}
+            {{ project.start_date.year }} -
+        {% endif %}
+        {% if project.end_date %}
+            {{ project.end_date.year }}
+        {% else %}
+            Present
+        {% endif %}
+        </small>
+        //
+        <small>
+        {{ project.grant }}
+        </small>
+        </h1>
+        <p>
+        {% for person in project.people.all %}
+           {{ person }}
+        {% endfor %}
+        </p>
+        <p>{{ project.description }}</p>
+        {% for paper in project.papers.all %}
+            {{ paper }}
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11-strict.dtd">
+<html xmlns="http://w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+    <head>
+        <title>{% block title %}LEEPS - Learning and Experimental Economics Projects of Santa Cruz{% endblock %}</title>
+        
+       <link
+            type="text/css"
+            rel="stylesheet"
+            href="{{ MEDIA_URL }}css/base.css"/>   
+        {% block style %}{% endblock %}
+        
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
+        
+        {% block script %}{% endblock %}
+        <script type="text/javascript">
+            $(function(){
+                {% block onready %}
+                {% endblock %}
+            });
+        </script>
+        
+    </head>
+    
+    <body>
+        <div id="header">
+            <img src="{{ MEDIA_URL }}images/leeps_logo.png" alt="LEEPS Logo">
+            <span id="header_banner">
+                <ul>
+                {% block nav_home %}<li><a href="/home">Home</a></li>{% endblock %}
+                {% block nav_about %}<li><a href="/about">About</a></li>{% endblock %}
+                {% block nav_people %}<li><a href="/people">People</a></li>{% endblock %}
+                {% block nav_projects %}<li><a href="/projects">Projects</a></li>{% endblock %}
+                {% block nav_papers %}<li><a href="/papers">Papers</a></li>{% endblock %}
+                {% block nav_calendar %}<li><a href="/calendar">Calendar</a></li>{% endblock %}
+                </ul>
+            </span>
+        </div>
+        <div id="content">
+            {% block content %}{% endblock %}
+            {% block main_content %}{% endblock %}
+        </div>
+        <div id="footer-wrapper">
+            <div id="footer">
+                {% block footer %}
+                    <a href="mailto:james.l.pettit@gmail.com">email</a>
+                {% endblock %}
+            </div>
+        </div>
+    </body>
+    
+</html>

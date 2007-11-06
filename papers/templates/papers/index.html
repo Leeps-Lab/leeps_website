@@ -1,0 +1,18 @@
+{% extends "papers/base.html" %}
+
+{% block main_content %}
+    <p>Sort by:
+        <a href="/papers/by_title">title</a>
+        <a href="/papers/by_date">date</a>
+    </p>
+    {% for paper in papers %}
+        <h1>{{ paper.title }}</h1>
+        <ul>
+        {% for author in paper.authors.all %}
+            <li>{{ author }}</li>
+        {% endfor %}
+        </ul>
+        <p>{{ paper.date }}</p>
+        <p>{{ paper.abstract }}</p>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "people/base.html" %}
+
+{% block content %}
+    {% for category, status in categories %}
+        <h2>{{ category }}</h2>
+        <ul>
+            <li><h3>Active</h3></li>
+            <ul>
+            {% for person in status.active %}
+                {% if person.website %}
+                    <li><a href="{{ person.website }}">{{ person.name }}</a>
+                {% else %}
+                    <li>{{ person.name }}
+                {% endif %}
+                {% if person.title %}
+                    - <em>{{ person.title }}</em></li>
+                {% endif %}        
+            {% endfor %}
+            </ul>
+            <li><h3>Emeriti</h3></li>
+            <ul>
+            {% for person in status.emeriti %}
+                {% if person.website %}
+                    <li><a href="{{ person.website }}">{{ person.name }}</a>
+                {% else %}
+                    <li>{{ person.name }}
+                {% endif %}
+                {% if person.title %}
+                    - <em>{{ person.title }}</em></li>
+                {% endif %} 
+            {% endfor %}
+            </ul>
+        </ul>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load markup %}
+
+{% block nav_home %}
+<li id="current"><a href="/home">Home</a></li>
+{% endblock %}
+
+{% block main_content %}
+{{ content|markdown }}
+{% endblock %}
