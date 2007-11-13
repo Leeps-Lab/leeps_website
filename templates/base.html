@@ -8,11 +8,10 @@
             type="text/css"
             rel="stylesheet"
             href="{{ MEDIA_URL }}css/base.css"/>   
-        {% block style %}{% endblock %}
+        <style type="text/css">{% block style %}{% endblock %}</style>
         
         <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
-        
-        {% block script %}{% endblock %}
+        <script type="text/javascript">{% block script %}{% endblock %}</script>
         <script type="text/javascript">
             $(function(){
                 {% block onready %}

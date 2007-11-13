@@ -10,7 +10,11 @@
                 {% if person.website %}
                     <li><a href="{{ person.website }}">{{ person.name }}</a>
                 {% else %}
+                {% if person.email %}
+                    <li><a href="mailto:{{ person.email }}">{{ person.name }}</a>
+                {% else %}
                     <li>{{ person.name }}
+                {% endif %}
                 {% endif %}
                 {% if person.title %}
                     - <em>{{ person.title }}</em></li>
@@ -23,7 +27,11 @@
                 {% if person.website %}
                     <li><a href="{{ person.website }}">{{ person.name }}</a>
                 {% else %}
+                {% if person.email %}
+                    <li><a href="mailto:{{ person.email }}">{{ person.name }}</a>
+                {% else %}
                     <li>{{ person.name }}
+                {% endif %}
                 {% endif %}
                 {% if person.title %}
                     - <em>{{ person.title }}</em></li>

@@ -7,8 +7,9 @@ class Paper(models.Model):
     authors = models.ManyToManyField(Person)
     date = models.DateField()
     abstract = models.TextField()
-    paper = models.FileField(blank=True, upload_to='papers/')
-    data = models.FileField(blank=True, upload_to='papers/data/')
+    paper = models.FileField(blank=True, null=True, upload_to='papers/')
+    data = models.FileField(blank=True, null=True, upload_to='papers/data/')
+    code = models.FileField(blank=True, null=True, upload_to='papers/code/')
     
     def __str__(self):
         return self.title
