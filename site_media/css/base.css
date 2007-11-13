@@ -74,6 +74,7 @@ body {
     clear: both;
     padding: .1em;
     padding-left: 1.75em;
+    padding-right: 3em;
 }
 
 #content h1 {
@@ -92,4 +93,8 @@ body {
     border-top: thin dotted black;
     clear: both;
     text-align: center;
+}
+
+p {
+    text-indent: 15px;
 }

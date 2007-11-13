@@ -1,18 +1,37 @@
 {% extends "papers/base.html" %}
 
 {% block main_content %}
-    <p>Sort by:
+    Sort by:
         <a href="/papers/by_title">title</a>
         <a href="/papers/by_date">date</a>
-    </p>
     {% for paper in papers %}
-        <h1>{{ paper.title }}</h1>
+        <h1>{{ paper.title }} // <small>{{ paper.date }}</small></h1>
         <ul>
-        {% for author in paper.authors.all %}
-            <li>{{ author }}</li>
+        {% for person in paper.authors.all %}
+            {% if person.website %}
+                <a href="{{ person.website }}">
+                    {{ person }}
+                </a>{% if not forloop.last %},{% endif %}
+            {% else %}
+            {% if person.email %}
+                <a href="mailto:{{ person.email }}">
+                    {{ person }}
+                </a>{% if not forloop.last %},{% endif %}
+            {% else %}
+                {{ person }}{% if not forloop.last %},{% endif %}
+            {% endif %}
+            {% endif %}
         {% endfor %}
-        </ul>
-        <p>{{ paper.date }}</p>
+        <h2>Abstract</h2>
         <p>{{ paper.abstract }}</p>
+        {% ifequal paper.publish "true" %}
+            <h2>Download</h2>
+            <ul>
+                <li><a href="{{ paper.get_paper_url }}">{{ paper }}</a></li>
+                <li><a href="{{ paper.get_data_url }}">{{ paper }} - Data</a></li>
+                <li><a href="{{ paper.get_code_url }}">{{ paper }} - Source Code</a></<li>
+            </ul>
+        {% endifequal %}
+        </ul>
     {% endfor %}
 {% endblock %}
