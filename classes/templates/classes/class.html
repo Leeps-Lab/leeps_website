@@ -1,0 +1,16 @@
+{% extends "classes/base.html" %}
+{% load markup %}
+
+{% block main_content %}
+    <h1>{{ class.name }}</h1>
+    <p>{{ class.page|markdown }}</p>
+    <ul>   
+    <h2>Readings</h2>
+    {% for reading in readings %}
+        <p>{{ reading.title }}</p>
+        <p>{{ reading.date }}</p>
+        <p>{{ reading.description }}</p>
+        <p><a href="{{ reading.get_absolute_url }}">download</a></p>
+    {% endfor %}
+    </ul>
+{% endblock %}

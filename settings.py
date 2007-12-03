@@ -91,5 +91,6 @@ INSTALLED_APPS = (
     'leeps_website.papers',
     'leeps_website.people',
     'leeps_website.projects',
+    'leeps_website.classes',
     'leeps_website',
 )

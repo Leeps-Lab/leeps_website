@@ -1,0 +1,7 @@
+{% extends "classes/base.html" %}
+
+{% block main_content %}
+    {% for class in classes %}
+    <a href="{{ class.get_absolute_url }}">{{ class.name }}</a>
+    {% endfor %}
+{% endblock %}
