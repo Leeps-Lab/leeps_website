@@ -22,10 +22,10 @@ class Person(models.Model):
         return self.name
     
     # show model on admin page
-    class Admin():
+    class Admin:
         pass
         
-    class Meta():
+    class Meta:
         verbose_name_plural = "people"
 
 class Category(models.Model):
@@ -36,8 +36,8 @@ class Category(models.Model):
         return self.name
     
     # show model on admin page
-    class Admin():
+    class Admin:
         pass
         
-    class Meta():
+    class Meta:
         verbose_name_plural = "categories"   
