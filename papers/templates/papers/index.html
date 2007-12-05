@@ -2,8 +2,17 @@
 
 {% block main_content %}
     Sort by:
-        <a href="/papers/by_title">title</a>
-        <a href="/papers/by_date">date</a>
+    <a href="/papers/by_title/">title</a>
+    {% if order %}
+        {% ifequal order "asc" %}
+            <a href="/papers/by_date/desc/">date</a>
+        {% endifequal %}
+        {% ifequal order "desc" %}
+            <a href="/papers/by_date/asc/">date</a>
+        {% endifequal %}
+    {% else %}
+        <a href="/papers/by_date/desc/">date</a>
+    {% endif %}    
     {% for paper in papers %}
         <h1>{{ paper.title }} // <small>{{ paper.date }}</small></h1>
         <ul>
@@ -27,9 +36,15 @@
         {% ifequal paper.publish "true" %}
             <h2>Download</h2>
             <ul>
+                {% if paper.get_paper_url %}
                 <li><a href="{{ paper.get_paper_url }}">{{ paper }}</a></li>
+                {% endif %}
+                {% if paper.get_date_url %}
                 <li><a href="{{ paper.get_data_url }}">{{ paper }} - Data</a></li>
+                {% endif %}
+                {% if paper.get_code_url %}
                 <li><a href="{{ paper.get_code_url }}">{{ paper }} - Source Code</a></<li>
+                {% endif %}
             </ul>
         {% endifequal %}
         </ul>

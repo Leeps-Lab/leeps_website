@@ -19,10 +19,13 @@ def by_title(request):
         { 'papers': papers, },
         context_instance=RequestContext(request))
 
-def by_date(request):
+def by_date(request, order):
     papers = Paper.objects.all()
     papers = list(papers)
-    papers.sort(key=lambda x: x.date)
+    if order == 'asc':
+        papers.sort(key=lambda x: x.date)
+    elif order == 'desc':
+        papers.sort(key=lambda x: x.date, reverse=True)
     return render_to_response('papers/index.html',
-        { 'papers': papers, },
+        { 'papers': papers, 'order': order, },
         context_instance=RequestContext(request))

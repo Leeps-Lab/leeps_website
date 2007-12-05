@@ -4,5 +4,5 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('leeps_website.papers.views',
     (r'^$', 'index'),
     (r'^by_title/$', 'by_title'),
-    (r'^by_date/$', 'by_date'),
+    (r'^by_date/(?P<order>\w+)/$', 'by_date'),
 )
