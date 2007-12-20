@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404
 from django.template import RequestContext
 from models import *
+from people.models import *
 # Create your views here.
 
 def index(request):
@@ -12,7 +13,7 @@ def index(request):
         context_instance=RequestContext(request))
 
 def details(request, class_name):
-    cls = get_object_or_404(Class, slug=class_name)    
+    cls = get_object_or_404(Class, slug=class_name)
     readings = Reading.objects.filter(cls=cls)
     return render_to_response('classes/class.html',
         { 'class': cls, 'readings': readings, },

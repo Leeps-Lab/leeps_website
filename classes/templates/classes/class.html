@@ -2,7 +2,13 @@
 {% load markup %}
 
 {% block main_content %}
-    <h1>{{ class.name }}</h1>
+    <h1>{{ class.name }} // 
+        <small>
+            <a href="{{ class.professor.get_absolute_url }}">
+                Prof. {{ class.professor.name }}
+            </a>
+        </small>
+    </h1>
     <p>{{ class.page|markdown }}</p>
     <ul>   
     <h2>Readings</h2>

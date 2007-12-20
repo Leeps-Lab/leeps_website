@@ -3,5 +3,5 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('leeps_website.classes.views',
     (r'^$', 'index'),
-    (r'(?P<class_name>\w+)', 'details'),
+    (r'(?P<class_name>[\w-]+)', 'details'),
 )
