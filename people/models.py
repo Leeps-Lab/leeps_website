@@ -13,6 +13,7 @@ class Person(models.Model):
     website = models.URLField(blank=True)
     picture = models.ImageField(blank=True, upload_to='people/images/')
     email = models.EmailField(blank=True)
+    cv = models.FileField(blank=True, null=True, upload_to='people/')
     
     # this will be the string used to form the URL
     slug = models.SlugField(prepopulate_from=('name',))
@@ -20,6 +21,9 @@ class Person(models.Model):
     # return our name when asked to print ourselves    
     def __str__(self):
         return self.name
+        
+    def get_absolute_url(self):
+        return '/people/%s' % self.slug
     
     # show model on admin page
     class Admin:

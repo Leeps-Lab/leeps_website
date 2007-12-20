@@ -1,10 +1,12 @@
 from django.db import models
 from django.db.models import permalink
+from people.models import Person
 
 # Create your models here.
 class Class(models.Model):
     name = models.CharField(max_length=100)
     page = models.TextField()
+    professor = models.ForeignKey(Person, blank=True, null=True)
     
     slug = models.SlugField(prepopulate_from=('name',))
     

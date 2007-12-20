@@ -11,7 +11,7 @@ def index(request):
         { 'classes': classes, },
         context_instance=RequestContext(request))
 
-def get_class(request, class_name):
+def details(request, class_name):
     cls = get_object_or_404(Class, slug=class_name)    
     readings = Reading.objects.filter(cls=cls)
     return render_to_response('classes/class.html',
