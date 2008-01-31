@@ -15,6 +15,9 @@ class Paper(models.Model):
         radio_admin=True,
         help_text='''If "Yes", all files attached to this paper will be available for download.
                      If paper has no attached file(s), just put "No"''')
+
+    def get_absolute_url(self):
+        return '/papers/#'+self.title
     
     def __str__(self):
         return self.title

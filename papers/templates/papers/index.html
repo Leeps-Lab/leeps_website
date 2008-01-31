@@ -14,7 +14,7 @@
         <a href="/papers/by_date/desc/">date</a>
     {% endif %}    
     {% for paper in papers %}
-        <h1>{{ paper.title }} // <small>{{ paper.date }}</small></h1>
+    <h1 id="{{ paper.title }}">{{ paper.title }} // <small>{{ paper.date }}</small></h1>
         <ul>
         {% for person in paper.authors.all %}
             {% if person.website %}

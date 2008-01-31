@@ -20,7 +20,7 @@
     <h2>Papers</h2>
     <ul>
     {% for paper in papers %}
-        <li>{{ paper.title }}</li>
+        <li><a href="{{ paper.get_absolute_url }}">{{ paper.title }}</a></li>
     {% endfor %}
     </ul>
 {% endblock %}
