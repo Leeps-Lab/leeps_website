@@ -10,13 +10,16 @@
         </small>
     </h1>
     <p>{{ class.page|markdown }}</p>
-    <ul>   
     <h2>Readings</h2>
     {% for reading in readings %}
-        <p>{{ reading.title }}</p>
-        <p>{{ reading.date }}</p>
-        <p>{{ reading.description }}</p>
-        <p><a href="{{ reading.get_absolute_url }}">download</a></p>
-    {% endfor %}
+    <ul style="list-style:none">
+        <li>
+        <h3><em>{{ reading.title }}</em></h3>
+        <ul style="list-style:none">
+            <li>{{ reading.description }}</li>
+            <li>- <a href="{{ reading.get_absolute_url }}">download</a></li>
+        </ul>
+        <li>
     </ul>
+    {% endfor %}
 {% endblock %}
