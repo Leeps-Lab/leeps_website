@@ -36,4 +36,4 @@ class Reading(models.Model):
         return self.download
         
     class Meta:
-        ordering=('title',)
+        ordering=('-date',)
