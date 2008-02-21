@@ -9,7 +9,7 @@
     <ul>
         <li><a href="{{ person.website }}">Website</a></li>
         <li><a href="mailto:{{ person.email }}">Email</a></li>
-        <li><a href="{{ person.cv.get_cv_filename }}">Curriculum Vitae</a></li>
+        <li><a href="{{ person.get_cv_url }}">Curriculum Vitae</a></li>
     </ul>
     <h2>Classes</h2>
     <ul>
