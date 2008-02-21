@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404
 from django.template import RequestContext
 from models import *
-from people.models import *
+from leeps_website.people.models import *
 # Create your views here.
 
 def index(request):

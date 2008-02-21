@@ -3,8 +3,8 @@ from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404
 from django.template import RequestContext
 from models import *
-from papers.models import Paper
-from classes.models import Class
+from leeps_website.papers.models import Paper
+from leeps_website.classes.models import Class
 
 # Create your views here.
 def index(request):

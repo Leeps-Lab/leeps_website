@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models import permalink
-from people.models import Person
+from leeps_website.people.models import Person
 
 # Create your models here.
 class Class(models.Model):
@@ -31,9 +31,9 @@ class Reading(models.Model):
     
     def __str__(self):
         return self.title
-        
-    def get_absolute_url(self):
-        return self.download
-        
+
+    class Admin:
+        pass
+
     class Meta:
         ordering=('-date',)
