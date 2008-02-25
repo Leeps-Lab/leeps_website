@@ -92,48 +92,52 @@
                         <a href="{{ paper.get_paper_url }}">{{ paper }}</a>
                     {% endifequal %}
                     </li>
-                    <li>
-                    {% ifequal project.protect_data "true" %}
-                        <a class="protected" id="{{ paper }}_data" href="">
-                            {{ paper }} - Data
-                        </a>
-                        <span>
-                        <ul>
-                            <li>
-                            This data requires a password to download.
-                            You can <a href="mailto:leeps@ucsc.edu">mail us</a> to request access.
-                            <form>
-                                <input type="password" name="{{ project }}_{{ paper }}_data"/>
-                                <input type="submit" value="Download"/>
-                            </form>
-                            </li>
-                        </ul>
-                        </span>
-                    {% else %}
-                        <a href="{{ paper.get_data_url }}">{{ paper }} - Data</a>
-                    {% endifequal %}
-                    </li>
-                    <li>
-                    {% ifequal project.protect_code "true" %}
-                        <a class="protected" id="{{ paper }}_code" href="">
-                            {{ paper }} - Source Code
-                        </a>
-                        <span>
-                        <ul>
-                            <li>
-                            This data requires a password to download.
-                            You can <a href="mailto:leeps@ucsc.edu">mail us</a> to request access.
-                            <form>
-                                <input type="password" name="{{ project }}_{{ paper }}_code"/>
-                                <input type="submit" value="Download"/>
-                            </form>
-                            </li>
-                        </ul>
-                        </span>
-                    {% else %}
-                        <a href="{{ paper.get_code_url }}">{{ paper }} - Source Code</a>
-                    {% endifequal %}
-                    </li>
+                    {% if paper.get_data_url %}
+                        <li>
+                        {% ifequal project.protect_data "true" %}
+                            <a class="protected" id="{{ paper }}_data" href="">
+                                {{ paper }} - Data
+                            </a>
+                            <span>
+                            <ul>
+                                <li>
+                                This data requires a password to download.
+                                You can <a href="mailto:leeps@ucsc.edu">mail us</a> to request access.
+                                <form>
+                                    <input type="password" name="{{ project }}_{{ paper }}_data"/>
+                                    <input type="submit" value="Download"/>
+                                </form>
+                                </li>
+                            </ul>
+                            </span>
+                        {% else %}
+                            <a href="{{ paper.get_data_url }}">{{ paper }} - Data</a>
+                        {% endifequal %}
+                        </li>
+                    {% endif %}
+                    {% if paper.get_code %}
+                        <li>
+                        {% ifequal project.protect_code "true" %}
+                            <a class="protected" id="{{ paper }}_code" href="">
+                                {{ paper }} - Source Code
+                            </a>
+                            <span>
+                            <ul>
+                                <li>
+                                This data requires a password to download.
+                                You can <a href="mailto:leeps@ucsc.edu">mail us</a> to request access.
+                                <form>
+                                    <input type="password" name="{{ project }}_{{ paper }}_code"/>
+                                    <input type="submit" value="Download"/>
+                                </form>
+                                </li>
+                            </ul>
+                            </span>
+                        {% else %}
+                            <a href="{{ paper.get_code_url }}">{{ paper }} - Source Code</a>
+                        {% endifequal %}
+                        </li>
+                    {% endif %}
                 </ul>
             {% endfor %}
         </ul>
