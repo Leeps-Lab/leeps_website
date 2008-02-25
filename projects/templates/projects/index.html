@@ -28,9 +28,9 @@
 
 {% block main_content %}
     Sort by:
-        <a href="/projects/by_name">name</a>
-        <a href="/projects/by_date">date</a>
-        <a href="/projects/by_grant">grant</a>
+        <a href="/projects/by_title">Title</a>
+        <a href="/projects/by_end_date">Date</a>
+        <a href="/projects/by_grant">Grant</a>
     {% for project in projects %}
         <h1>{{ project.title }}
         //
@@ -142,4 +142,5 @@
             {% endfor %}
         </ul>
     {% endfor %}
+    <a href="/projects/archived/"><h1><u>Archived</u></h1></a>
 {% endblock %}
