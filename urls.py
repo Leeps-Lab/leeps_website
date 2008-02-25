@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     # admin
     (r'^admin/', include('django.contrib.admin.urls')),
     
-    #(r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': os.getcwd()+'/site_media/'}),
+    (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': os.getcwd()+'/site_media/'}),
 )
 
 urlpatterns += patterns('leeps_website.views',
