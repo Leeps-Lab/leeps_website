@@ -6,10 +6,10 @@ from leeps_website.papers.models import Paper
 class Project(Model):
     title = CharField(max_length=200)
     start_date = DateField(blank=True)
-    end_date = DateField(blank=True,
+    end_date = DateField(blank=True, null=True,
         help_text='If left blank, displays as "[start date] - Present"')
-    people = ManyToManyField(Person)
-    grant = ForeignKey('Grant', blank=True)
+    people = ManyToManyField(Person, blank=True, null=True)
+    grant = ForeignKey('Grant', blank=True, null=True)
     description = TextField()
     papers = ManyToManyField(Paper, blank=True)
     password = CharField(max_length=50, blank=True)
