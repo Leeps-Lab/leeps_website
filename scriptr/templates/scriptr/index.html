@@ -1,0 +1,7 @@
+{% extends "scriptr/base.html" %}
+
+{% block content %}
+    {% for script in scripts %}
+    <a href="{% url scriptr.run_script script.slug %}">{{ script.name }}</a>
+    {% endfor %}
+{% endblock %}

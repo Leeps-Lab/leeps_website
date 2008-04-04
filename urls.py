@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     (r'^people/', include('leeps_website.people.urls')),
     (r'^projects/', include('leeps_website.projects.urls')),
     (r'^classes/', include('leeps_website.classes.urls')),
+    (r'^scriptr/', include('leeps_website.scriptr.urls')),
 
     # admin
     (r'^admin/', include('django.contrib.admin.urls')),

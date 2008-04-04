@@ -1,0 +1,15 @@
+{% extends "scriptr/base.html" %}
+
+{% block content %}
+<form method="post" action="">
+    {% for field in form %}
+        <dt>{{ field.label_tag }}</dt>
+        <dd>{{ field }}</dd>
+        {% if field.help_text %}<dd>{{ field.help_text }}</dd>{% endif %}
+        {% if field.errors %}
+            <dd class="form_errors">{{ field.errors }}</dd>
+        {% endif %}
+    {% endfor %}
+    <input type="submit" value="Diagram It!"/>
+</form>
+{% endblock %}
