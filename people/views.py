@@ -19,7 +19,6 @@ def index(request):
         context_instance=RequestContext(request))
         
 def details(request, person):
-    print person
     person = get_object_or_404(Person, slug=person)
     classes = Class.objects.filter(professor=person)   
     papers = Paper.objects.filter(authors=person)
