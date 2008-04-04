@@ -17,7 +17,7 @@ class Paper(models.Model):
                      If paper has no attached file(s), just put "No"''')
 
     def get_absolute_url(self):
-        return '/papers/#'+self.title
+        return '/papers/'
     
     def __str__(self):
         return self.title

@@ -23,6 +23,9 @@ class Project(Model):
     
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return '/projects/'
     
     class Admin:
         list_display = ('title', 'password')
