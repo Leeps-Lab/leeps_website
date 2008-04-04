@@ -16,7 +16,8 @@ def index(request):
 def run_script(request, scriptslug):
     script = get_object_or_404(Script, pk=scriptslug)
     if request.method == 'POST':
-        form = RunScriptForm(request.POST)
+        form_class = RunScriptFormFactory(script.get_file_filename())
+        form = form_class(request.POST)
         if form.is_valid():
             glob = {}
             loc = {}
@@ -27,7 +28,8 @@ def run_script(request, scriptslug):
             loc['main_script'](form.cleaned_data, output_path)
             return HttpResponseRedirect('/site_media/scriptr/'+output_filename)
     else:
-        form = RunScriptFormFactory(script.get_file_filename())
+        form_class = RunScriptFormFactory(script.get_file_filename())
+        form = form_class()
     return render_to_response('scriptr/run_script.html',
             { 'form': form },
             context_instance=RequestContext(request))
