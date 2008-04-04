@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.template import RequestContext
 from django.conf import settings
 from leeps_website.scriptr.models import Script
-from leeps_website.scriptr.forms import RunScriptForm
+from leeps_website.scriptr.forms import RunScriptFormFactory
 import uuid, os
 
 # Create your views here.
@@ -27,7 +27,7 @@ def run_script(request, scriptslug):
             loc['main_script'](form.cleaned_data, output_path)
             return HttpResponseRedirect('/site_media/scriptr/'+output_filename)
     else:
-        form = RunScriptForm()
+        form = RunScriptFormFactory(script.get_file_filename())
     return render_to_response('scriptr/run_script.html',
             { 'form': form },
             context_instance=RequestContext(request))
