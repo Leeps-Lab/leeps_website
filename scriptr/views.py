@@ -24,7 +24,7 @@ def run_script(request, scriptslug):
             execfile(script.get_file_filename(), glob, loc)
             output_filename = uuid.uuid4().hex+'.png'
             output_path = os.path.join(
-                    settings.WORKING_DIR, 'site_media', 'scriptr', output_filename)
+                    '/opt/local/var/leeps_website/', 'site_media', 'scriptr', output_filename)
             loc['main_script'](form.cleaned_data, output_path)
             return HttpResponseRedirect('/site_media/scriptr/'+output_filename)
     else:
