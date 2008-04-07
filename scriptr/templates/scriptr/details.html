@@ -27,9 +27,13 @@
     </form>
     <a class="show" href="">show source code</a>
     <pre>{{ script.code }}</pre>
+    <p>Hint: Copy/paste the example input into the input box to generate the example</p>
     {% for example in examples %}
         <h2>{{ example.name }}</h2>
-        <pre style="float: left">{{ example.text }}</pre>
+        <div style="float: left">
+            input:
+            <pre>{{ example.text }}</pre>
+        </div>
         <img style="border: 1px solid black; margin: 5px;" src="{{ example.image }}" />
     {% endfor %}
 {% endblock %}

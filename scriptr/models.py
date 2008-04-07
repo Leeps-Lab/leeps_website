@@ -19,7 +19,10 @@ class Script(models.Model):
         output_path = os.path.join(settings.MEDIA_ROOT, 'scriptr', uuid().hex+'.'+output_type)
         code = compile(text.replace('\r\n', '\n'), '<string>', 'exec')
         exec(code, glob, loc)
-        loc['main_script'](loc, output_path)
+        try:
+            loc['main_script'](loc, output_path)
+        except:
+            pass
         if self.last_output:
             try:
                 os.remove(self.last_output)
