@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import *
+from django.conf import settings
 from django.contrib.sitemaps import GenericSitemap
 from leeps_website.papers.models import Paper
 from leeps_website.people.models import Person
@@ -38,3 +39,8 @@ urlpatterns += patterns('django.views.generic.simple',
     # simple redirect
     (r'^calendar/$', 'redirect_to', {'url': 'http://econlab.ucsc.edu/public/show_calendar.php'}),
 )
+
+if settings.DEVEL:
+    urlpatterns += patterns('',
+        (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    )

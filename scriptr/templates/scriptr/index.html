@@ -2,6 +2,6 @@
 
 {% block content %}
     {% for script in scripts %}
-    <a href="{% url scriptr.views.run_script script.slug %}">{{ script.name }}</a>
+        <a href="{% url scriptr.views.run_script script.slug %}">{{ script.name }}</a>
     {% endfor %}
 {% endblock %}

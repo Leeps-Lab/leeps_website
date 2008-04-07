@@ -4,25 +4,16 @@ import sys
 class CodeField(forms.CharField):
     def clean(self, value):
         if not value:
-            raise forms.ValidationError('This field in required')
+            if not self.required:
+                value = '""'
+            else:
+                raise forms.ValidationError('This field is required')
         try:
-            value = ' '.join(value.split('\r\n'))
-            code = eval(value)
+            glob = {}; loc = {}
+            code = compile(value.replace('\r\n', '\n'), '<string>', 'exec')
         except:
-            raise forms.ValidationError(
-                    'Problem parsing field: %s'%sys.exc_info()[0])
-        return code
+            raise forms.ValidationError('Problem parsing field')
+        return value
 
-def RunScriptFormFactory(script):
-    class RunScriptForm(forms.Form): pass
-    glob = {}; loc = {}
-    execfile(script, glob, loc)
-    for var in loc['required']['short']:
-        RunScriptForm.base_fields[var] = CodeField(required=True)
-    for var in loc['required']['long']:
-        RunScriptForm.base_fields[var] = CodeField(required=True, widget=forms.Textarea(attrs={'rows':'30','cols':'50'}))
-    for var in loc['optional']['short']:
-        RunScriptForm.base_fields[var] = CodeField(required=False)
-    for var in loc['optional']['long']:
-        RunScriptForm.base_fields[var] = CodeField(required=True, widget=forms.Textarea(attrs={'rows':'30','cols':'50'}))
-    return RunScriptForm
+class RunScriptForm(forms.Form):
+    input = CodeField(required=True, widget=forms.Textarea(attrs={'rows':'30','cols':'50'}))
