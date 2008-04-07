@@ -21,7 +21,8 @@ def details(request, slug):
         form = RunScriptForm(request.POST)
         if form.is_valid():
             input = form.cleaned_data['input']
-            output = script.execute(input)
+            output_type = form.cleaned_data['output_type']
+            output = script.execute(input, output_type)
             url = settings.MEDIA_URL+'/'+'scriptr'+'/'+os.path.split(output)[1].replace(' ', '%20')
             print url
             return HttpResponseRedirect(url)

@@ -11,12 +11,12 @@ class Script(models.Model):
     slug = models.SlugField(prepopulate_from=("name",), primary_key=True)
     last_output = models.CharField(max_length=200, blank=True, editable=False)
     
-    def execute(self, text):
+    def execute(self, text, output_type):
         glob = {}
         loc = {}
         code = compile(self.code.replace('\r\n', '\n'), '<string>', 'exec')
         exec(code, glob, loc)
-        output_path = os.path.join(settings.MEDIA_ROOT, 'scriptr', uuid().hex+'.png')
+        output_path = os.path.join(settings.MEDIA_ROOT, 'scriptr', uuid().hex+'.'+output_type)
         code = compile(text.replace('\r\n', '\n'), '<string>', 'exec')
         exec(code, glob, loc)
         loc['main_script'](loc, output_path)

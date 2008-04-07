@@ -17,3 +17,5 @@ class CodeField(forms.CharField):
 
 class RunScriptForm(forms.Form):
     input = CodeField(required=True, widget=forms.Textarea(attrs={'rows':'30','cols':'50'}))
+    output_type = forms.ChoiceField(choices=(
+        ('png','png'),('svg','svg'),('jpg','jpg')))
