@@ -1,12 +1,8 @@
 # Django settings for leeps_website project.
 
 import os
-DEVEL = True
-if 'cash1' in os.popen('hostname').read():
-    DEVEL = False
-    ROOT_DIR = '/opt/local/var/leeps_website'
-else:
-    ROOT_DIR = os.getcwd()
+DEVEL = False
+ROOT_DIR = '/opt/local/var/leeps_website/'
 
 DEBUG = DEVEL
 TEMPLATE_DEBUG = DEBUG

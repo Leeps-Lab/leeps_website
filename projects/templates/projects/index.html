@@ -44,10 +44,12 @@
             Present
         {% endif %}
         </small>
-        //
-        <small>
-        {{ project.grant }}
-        </small>
+        {% if project.grant %}
+            //
+            <small>
+            {{ project.grant }}
+            </small>
+        {% endif %}
         </h1>
         <ul>
             {% for person in project.people.all %}

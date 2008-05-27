@@ -16,7 +16,11 @@ def index(request, archived=None, order=None):
         template = 'projects/archived.html'
         projects = Project.objects.filter(archived=archived)
     if order:
-        projects = projects.order_by(order)
+        try:
+            projects = projects.order_by(order)
+        except OperationalError:
+            '''order column probably doesn't exist'''
+            pass
     return render_to_response(template,
             { 'projects' : projects },
             context_instance=RequestContext(request))

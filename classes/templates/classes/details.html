@@ -14,7 +14,7 @@
     {% for reading in readings %}
     <ul style="list-style:none">
         <li>
-        <h3><em>{{ reading.title }}</em></h3>
+        <h3><em>{{ reading.title }}</em> // <small>Posted on {{ reading.date }}</small></h3>
         <ul style="list-style:none">
             <li>{{ reading.description }}</li>
             <li>- <a href="{{ reading.get_download_url }}">download</a></li>
