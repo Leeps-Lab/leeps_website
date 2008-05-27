@@ -10,7 +10,7 @@
         </small>
     </h1>
     <p>{{ class.page|markdown }}</p>
-    <h2>Readings</h2>
+    <h2>Readings //<small>{% for tag in tags %} <a href="{{ class.get_absolute_url }}/{{ tag }}">{{ tag }}</a> //{% endfor %}</small></h2>
     {% for reading in readings %}
     <ul style="list-style:none">
         <li>

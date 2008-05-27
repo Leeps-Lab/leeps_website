@@ -28,6 +28,7 @@ class Reading(models.Model):
     description = models.TextField(blank=True, core=True)
     download = models.FileField(blank=True, null=True, upload_to='readings/', core=True)
     cls = models.ForeignKey(Class, edit_inline=True)
+    tag = models.CharField(max_length=100, core=True, blank=True)
     
     def __str__(self):
         return self.title

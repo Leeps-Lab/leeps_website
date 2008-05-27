@@ -1,8 +1,8 @@
 # Django settings for leeps_website project.
 
 import os
-DEVEL = False
-ROOT_DIR = '/opt/local/var/leeps_website/'
+DEVEL = os.getcwd() != '/opt/local/var/leeps_website'
+ROOT_DIR = os.getcwd()
 
 DEBUG = DEVEL
 TEMPLATE_DEBUG = DEBUG
@@ -45,7 +45,7 @@ MEDIA_ROOT = os.path.join(ROOT_DIR, 'site_media')
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 if DEVEL:
-    MEDIA_URL = 'http://localhost:8000/site_media/'
+    MEDIA_URL = '/site_media/'
 else:
     MEDIA_URL = 'http://leeps.ucsc.edu/site_media/'
 

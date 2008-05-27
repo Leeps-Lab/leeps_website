@@ -15,6 +15,26 @@ def index(request):
 def details(request, class_name):
     cls = get_object_or_404(Class, slug=class_name)
     readings = Reading.objects.filter(cls=cls)
+    tags = {}
+    for reading in readings:
+        tags[reading.tag] = ""
+    del tags[None]
     return render_to_response('classes/details.html',
-        { 'class': cls, 'readings': readings, },
+            { 'class': cls, 'readings': readings, 'tags': ['All']+tags.keys()},
+        context_instance=RequestContext(request))
+
+def get_readings_by_tag(request, class_name, tag_name):
+    cls = get_object_or_404(Class, slug=class_name)
+    readings = Reading.objects.filter(cls=cls)
+    tags = {}
+    for reading in readings:
+        tags[reading.tag] = ""
+    del tags[None]
+    tag_name = str(tag_name)
+    if tag_name.count('All') == 1:
+        tagged = readings
+    else:
+        tagged = [reading for reading in readings if tag_name.count(str(reading.tag)) == 1]
+    return render_to_response('classes/details.html',
+            { 'class': cls, 'readings': tagged, 'tags': ['All']+tags.keys()},
         context_instance=RequestContext(request))
