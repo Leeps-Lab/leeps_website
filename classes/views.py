@@ -18,7 +18,9 @@ def details(request, class_name):
     tags = {}
     for reading in readings:
         tags[reading.tag] = ""
-    del tags[None]
+    print tags
+    if None in tags:
+        del tags[None]
     return render_to_response('classes/details.html',
             { 'class': cls, 'readings': readings, 'tags': ['All']+tags.keys()},
         context_instance=RequestContext(request))

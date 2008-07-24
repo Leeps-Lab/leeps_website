@@ -8,7 +8,7 @@ class Class(models.Model):
     page = models.TextField()
     professor = models.ForeignKey(Person, blank=True, null=True)
     
-    slug = models.SlugField(prepopulate_from=('name',))
+    slug = models.SlugField()
     
     def __str__(self):
         return self.name

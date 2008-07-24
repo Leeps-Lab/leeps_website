@@ -16,7 +16,7 @@ class Person(models.Model):
     cv = models.FileField(blank=True, null=True, upload_to='people/')
     
     # this will be the string used to form the URL
-    slug = models.SlugField(prepopulate_from=('name',))
+    slug = models.SlugField()
     
     # return our name when asked to print ourselves    
     def __str__(self):
@@ -24,10 +24,6 @@ class Person(models.Model):
         
     def get_absolute_url(self):
         return '/people/%s' % self.slug
-    
-    # show model on admin page
-    class Admin:
-        pass
         
     class Meta:
         verbose_name_plural = "people"
@@ -38,10 +34,6 @@ class Category(models.Model):
     # return our name when asked to print ourselves    
     def __str__(self):
         return self.name
-    
-    # show model on admin page
-    class Admin:
-        pass
         
     class Meta:
-        verbose_name_plural = "categories"   
+        verbose_name_plural = "categories"

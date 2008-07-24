@@ -12,7 +12,6 @@ class Paper(models.Model):
     code = models.FileField(blank=True, null=True, upload_to='papers/code/')
     publish = models.CharField(max_length=5,
         choices=(('true', 'Yes'), ('false', 'No')),
-        radio_admin=True,
         help_text='''If "Yes", all files attached to this paper will be available for download.
                      If paper has no attached file(s), just put "No"''')
 
@@ -24,7 +23,3 @@ class Paper(models.Model):
         
     class Meta:
         ordering=('-date', 'title')
-    
-    class Admin:
-        list_display=('title', 'date', 'publish')
-    

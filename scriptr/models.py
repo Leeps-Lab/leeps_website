@@ -8,7 +8,7 @@ class Script(models.Model):
     name = models.CharField(max_length=20)
     last_modified = models.DateField(auto_now=True)
     code = models.TextField()
-    slug = models.SlugField(prepopulate_from=("name",), primary_key=True)
+    slug = models.SlugField(primary_key=True)
     last_output = models.CharField(max_length=200, blank=True, editable=False)
     
     def execute(self, text, output_type):

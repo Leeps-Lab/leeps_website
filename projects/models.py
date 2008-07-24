@@ -14,11 +14,11 @@ class Project(Model):
     papers = ManyToManyField(Paper, blank=True)
     password = CharField(max_length=50, blank=True)
     protect_papers = CharField(max_length=10,
-        choices=(('true', 'Yes'), ('false', 'No')), radio_admin=True)
+        choices=(('true', 'Yes'), ('false', 'No')))
     protect_data = CharField(max_length=10,
-        choices=(('true', 'Yes'), ('false', 'No')), radio_admin=True)
+        choices=(('true', 'Yes'), ('false', 'No')))
     protect_code = CharField(max_length=10,
-        choices=(('true', 'Yes'), ('false', 'No')), radio_admin=True)
+        choices=(('true', 'Yes'), ('false', 'No')))
     archived = BooleanField(blank=True)
     
     def __str__(self):
@@ -27,14 +27,8 @@ class Project(Model):
     def get_absolute_url(self):
         return '/projects/'
     
-    class Admin:
-        list_display = ('title', 'password')
-    
 class Grant(Model):
     grant_id = CharField(max_length=30)
         
     def __str__(self):
         return self.grant_id
-        
-    class Admin:
-        pass

@@ -1,11 +1,15 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
 from django.contrib.sitemaps import GenericSitemap
+from django.contrib import admin
+
 from leeps_website.papers.models import Paper
 from leeps_website.people.models import Person
 from leeps_website.projects.models import Project
 from leeps_website.classes.models import Class
 from leeps_website.models import Page
+
+admin.autodiscover()
 
 sitemaps = {
     'papers': GenericSitemap({'queryset': Paper.objects.all()}),
@@ -22,9 +26,10 @@ urlpatterns = patterns('',
     (r'^projects/', include('leeps_website.projects.urls')),
     (r'^classes/', include('leeps_website.classes.urls')),
     (r'^scriptr/', include('leeps_website.scriptr.urls')),
+    (r'^fire/', include('leeps_website.fire.urls')),
 
     # admin
-    (r'^admin/', include('django.contrib.admin.urls')),
+    (r'^admin/(.*)', admin.site.root),
 
     (r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
 )
