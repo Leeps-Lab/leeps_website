@@ -8,6 +8,15 @@ from leeps_website.fire.models import *
 
 # Create your views here.
 def new_session(request):
+    if request.method == "POST":
+        form = SessionForm(request.POST)
+        if form.is_valid():
+            kindling = form.cleaned_data["kindling"]
+            configuration = form.cleaned_data["configuration"]
+            return render_to_response('fire/session.html',
+                    context_instance=RequestContext(request))
+    else:
+        form = SessionForm()
     return render_to_response('fire/new_session.html',
-            {'form': SessionForm() },
+            {'form': form },
             context_instance=RequestContext(request))
