@@ -25,11 +25,11 @@ class Class(models.Model):
 class Reading(models.Model):
     title = models.CharField(max_length=100, core=True)
     date = models.DateField(core=True)
-    description = models.TextField(blank=True, core=True)
-    download = models.FileField(blank=True, null=True, upload_to='readings/', core=True)
-    cls = models.ForeignKey(Class, edit_inline=True)
-    tag = models.CharField(max_length=100, core=True, blank=True)
-    
+    description = models.TextField(core=True)
+    download = models.FileField(upload_to='readings/', core=True)
+    cls = models.ForeignKey(Class, edit_inline=True, core=True)
+    tag = models.CharField(max_length=100, blank=True, core=True)
+
     def __str__(self):
         return self.title
 

@@ -27,7 +27,7 @@ class Session(models.Model):
     configuration = models.ForeignKey(Configuration)
     jnlp = models.FilePathField(path="fire/sessions/", match="*.jnlp", blank=True)
     def get_jnlp_url(self):
-        return settings.MEDIA_URL+"/fire/sessions/%s" % os.path.basename(self.jnlp)
+        return settings.MEDIA_URL+"fire/sessions/%s" % os.path.basename(self.jnlp)
     def delete(self):
         os.remove(self.jnlp)
         super(Session, self).delete()

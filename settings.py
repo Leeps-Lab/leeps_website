@@ -1,8 +1,9 @@
 # Django settings for leeps_website project.
 
 import os
-DEVEL = os.getcwd() != '/opt/local/var/leeps_website'
 ROOT_DIR = os.getcwd()
+
+DEVEL = ROOT_DIR == '/opt/local/var/leeps_website/'
 
 DEBUG = DEVEL
 TEMPLATE_DEBUG = DEBUG
@@ -14,7 +15,10 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = os.path.join(ROOT_DIR, 'leeps_website.db')             # Or path to database file if using sqlite3.
+if DEVEL:
+    DATABASE_NAME = os.path.join(os.getcwd(), 'leeps_website.db')             # Or path to database file if using sqlite3.
+else:
+    DATABASE_NAME = '/opt/local/var/leeps_website/leeps_website.db'             # Or path to database file if using sqlite3.
 DATABASE_USER = ''             # Not used with sqlite3.
 DATABASE_PASSWORD = ''         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
@@ -39,7 +43,7 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.join(ROOT_DIR, 'site_media')
+MEDIA_ROOT = '/opt/local/var/leeps_website/site_media'
 FILE_UPLOAD_MAX_MEMORY_SIZE=10485760
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a

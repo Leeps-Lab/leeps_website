@@ -18,9 +18,14 @@ def details(request, class_name):
     tags = {}
     for reading in readings:
         tags[reading.tag] = ""
+<<<<<<< .mine
+    if None in tags:
+        del tags[None]
+=======
     print tags
     if None in tags:
         del tags[None]
+>>>>>>> .r681
     return render_to_response('classes/details.html',
             { 'class': cls, 'readings': readings, 'tags': ['All']+tags.keys()},
         context_instance=RequestContext(request))
@@ -31,7 +36,8 @@ def get_readings_by_tag(request, class_name, tag_name):
     tags = {}
     for reading in readings:
         tags[reading.tag] = ""
-    del tags[None]
+    if None in tags:
+        del tags[None]
     tag_name = str(tag_name)
     if tag_name.count('All') == 1:
         tagged = readings
