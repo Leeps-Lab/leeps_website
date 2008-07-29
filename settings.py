@@ -69,6 +69,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     'django.middleware.doc.XViewMiddleware',
 )
 
@@ -94,6 +95,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.markup',
     'django.contrib.sitemaps',
+    'django.contrib.flatpages',
     'leeps_website.papers',
     'leeps_website.people',
     'leeps_website.projects',
