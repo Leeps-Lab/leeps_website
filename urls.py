@@ -7,7 +7,7 @@ from leeps_website.papers.models import Paper
 from leeps_website.people.models import Person
 from leeps_website.projects.models import Project
 from leeps_website.classes.models import Class
-from leeps_website.models import Page
+from django.contrib.flatpages.models import FlatPage
 
 admin.autodiscover()
 
@@ -16,7 +16,7 @@ sitemaps = {
     'people': GenericSitemap({'queryset': Person.objects.all()}),
     'projects': GenericSitemap({'queryset': Project.objects.all()}),
     'classes': GenericSitemap({'queryset': Class.objects.all()}),
-    'pages': GenericSitemap({'queryset': Page.objects.all()}),
+    'flatpages': GenericSitemap({'queryset': FlatPage.objects.all()}),
 }
 
 urlpatterns = patterns('',
@@ -34,14 +34,9 @@ urlpatterns = patterns('',
     (r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
 )
 
-urlpatterns += patterns('leeps_website.views',
-    # main content
-    (r'^$|^home/$', 'home'),
-    (r'^about/$', 'about'),
-)
-
 urlpatterns += patterns('django.views.generic.simple',
     # simple redirect
+    ('^$', 'redirect_to', {'url': '/home/'}),
     (r'^calendar/$', 'redirect_to', {'url': 'http://econlab.ucsc.edu/public/show_calendar.php'}),
 )
 

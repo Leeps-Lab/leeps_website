@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django import forms
 from leeps_website.projects.models import Project, Grant
 
 class ProjectAdmin(admin.ModelAdmin):
@@ -49,3 +50,14 @@ class ReadingAdmin(admin.ModelAdmin):
 
 admin.site.register(Class, ClassAdmin)
 admin.site.register(Reading, ReadingAdmin)
+
+from django.contrib.flatpages.models import FlatPage
+
+class FlatPageAdmin(admin.ModelAdmin):
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        if db_field.name == 'content':
+            kwargs['widget'] = forms.Textarea(attrs={'rows' : 20, 'cols' : 100})
+        return super(FlatPageAdmin, self).formfield_for_dbfield(db_field,**kwargs)
+
+admin.site.unregister(FlatPage)
+admin.site.register(FlatPage, FlatPageAdmin)
