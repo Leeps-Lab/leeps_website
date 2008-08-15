@@ -3,7 +3,7 @@
 import os
 ROOT_DIR = os.getcwd()
 
-DEVEL = ROOT_DIR == '/opt/local/var/leeps_website/'
+DEVEL = ROOT_DIR != '/opt/local/var/leeps_website/'
 
 DEBUG = DEVEL
 TEMPLATE_DEBUG = DEBUG
@@ -18,7 +18,7 @@ MANAGERS = ADMINS
 # NAME: Or path to database file if using sqlite3. or 'oracle'.
 if DEVEL:
     DATABASE_ENGINE = 'sqlite3'
-    DATABASE_USER = 'leeps'
+    DATABASE_USER = ''
     DATABASE_NAME = os.path.join(os.getcwd(), 'leeps_website.db')
     DATABASE_PASSWORD = ''
 else:
@@ -50,7 +50,10 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/opt/local/var/leeps_website/site_media'
+if DEVEL:
+    MEDIA_ROOT = os.path.join(os.getcwd(), 'site_media')
+else:
+    MEDIA_ROOT = '/opt/local/var/leeps_website/site_media'
 FILE_UPLOAD_MAX_MEMORY_SIZE=10485760
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
