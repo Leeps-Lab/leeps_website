@@ -1,0 +1,11 @@
+{% extends "misc/base.html" %}
+
+{% block main_content %}
+    {% for page in pages %}
+        {% ifnotequal page.title "About" %}
+        {% ifnotequal page.title "Home" %}
+        <p><a href="{{ page.url }}">{{ page.title }}</a></p>
+        {% endifnotequal %}
+        {% endifnotequal %}
+    {% endfor %}
+{% endblock %}
