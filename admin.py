@@ -11,7 +11,7 @@ class GrantAdmin(admin.ModelAdmin):
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Grant, GrantAdmin)
 
-from leeps_website.fire.models import Kindling, Configuration
+from leeps_website.fire.models import Kindling, Configuration, Session
 
 class KindlingAdmin(admin.ModelAdmin):
     pass
@@ -19,8 +19,12 @@ class KindlingAdmin(admin.ModelAdmin):
 class ConfigurationAdmin(admin.ModelAdmin):
     pass
 
+class SessionAdmin(admin.ModelAdmin):
+    pass
+
 admin.site.register(Kindling, KindlingAdmin)
 admin.site.register(Configuration, ConfigurationAdmin)
+admin.site.register(Session, SessionAdmin)
     
 from leeps_website.papers.models import Paper
 

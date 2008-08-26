@@ -114,7 +114,5 @@ INSTALLED_APPS = (
     'leeps_website.people',
     'leeps_website.projects',
     'leeps_website.classes',
-    'leeps_website.scriptr',
-    'leeps_website.fire',
     'leeps_website',
 )

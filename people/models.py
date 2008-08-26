@@ -1,9 +1,19 @@
 from django.db import models
 
 # Create your models here.
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    
+    # return our name when asked to print ourselves    
+    def __str__(self):
+        return self.name
+        
+    class Meta:
+        verbose_name_plural = "categories"
+
 class Person(models.Model):    
     # core fields (required)
-    category = models.ForeignKey('Category')
+    category = models.ForeignKey(Category)
     name = models.CharField(max_length=100)
     status = models.CharField(max_length=20, choices=(('A', 'Active'), ('E', 'Emeriti')))
     
@@ -27,13 +37,3 @@ class Person(models.Model):
         
     class Meta:
         verbose_name_plural = "people"
-
-class Category(models.Model):
-    name = models.CharField(max_length=100)
-    
-    # return our name when asked to print ourselves    
-    def __str__(self):
-        return self.name
-        
-    class Meta:
-        verbose_name_plural = "categories"

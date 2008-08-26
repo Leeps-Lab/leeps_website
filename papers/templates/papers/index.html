@@ -36,14 +36,14 @@
         {% ifequal paper.publish "true" %}
             <h2>Download</h2>
             <ul>
-                {% if paper.get_paper_url %}
-                <li><a href="{{ paper.get_paper_url }}">{{ paper }}</a></li>
+                {% if paper.paper %}
+                <li><a href="{{ paper.paper.url }}">{{ paper }}</a></li>
                 {% endif %}
-                {% if paper.get_date_url %}
-                <li><a href="{{ paper.get_data_url }}">{{ paper }} - Data</a></li>
+                {% if paper.data %}
+                <li><a href="{{ paper.data.url }}">{{ paper }} - Data</a></li>
                 {% endif %}
-                {% if paper.get_code_url %}
-                <li><a href="{{ paper.get_code_url }}">{{ paper }} - Source Code</a></<li>
+                {% if paper.code %}
+                <li><a href="{{ paper.code.url }}">{{ paper }} - Source Code</a></li>
                 {% endif %}
             </ul>
         {% endifequal %}
