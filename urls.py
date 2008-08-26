@@ -25,8 +25,9 @@ urlpatterns = patterns('',
     (r'^people/', include('leeps_website.people.urls')),
     (r'^projects/', include('leeps_website.projects.urls')),
     (r'^classes/', include('leeps_website.classes.urls')),
-    (r'^scriptr/', include('leeps_website.scriptr.urls')),
-    (r'^fire/', include('leeps_website.fire.urls')),
+    (r'^misc/', include('leeps_website.misc.urls')),
+    #(r'^scriptr/', include('leeps_website.scriptr.urls')),
+    #(r'^fire/', include('leeps_website.fire.urls')),
 
     # admin
     (r'^admin/(.*)', admin.site.root),

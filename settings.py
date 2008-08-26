@@ -19,7 +19,7 @@ MANAGERS = ADMINS
 if DEVEL:
     DATABASE_ENGINE = 'sqlite3'
     DATABASE_USER = ''
-    DATABASE_NAME = os.path.join(os.getcwd(), 'leeps_website.db')
+    DATABASE_NAME = os.path.join(ROOT_DIR, 'leeps_website.db')
     DATABASE_PASSWORD = ''
 else:
     DATABASE_ENGINE = 'mysql'
@@ -51,7 +51,7 @@ USE_I18N = True
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 if DEVEL:
-    MEDIA_ROOT = os.path.join(os.getcwd(), 'site_media')
+    MEDIA_ROOT = os.path.join(ROOT_DIR, 'site_media')
 else:
     MEDIA_ROOT = '/opt/local/var/leeps_website/site_media'
 FILE_UPLOAD_MAX_MEMORY_SIZE=10485760
@@ -114,5 +114,6 @@ INSTALLED_APPS = (
     'leeps_website.people',
     'leeps_website.projects',
     'leeps_website.classes',
+    'leeps_website.misc',
     'leeps_website',
 )

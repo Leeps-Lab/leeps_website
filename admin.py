@@ -46,14 +46,13 @@ admin.site.register(Category, CategoryAdmin)
 
 from leeps_website.classes.models import Class, Reading
 
-class ClassAdmin(admin.ModelAdmin):
-    pass
+class ReadingAdminInline(admin.TabularInline):
+    model = Reading
 
-class ReadingAdmin(admin.ModelAdmin):
-    pass
+class ClassAdmin(admin.ModelAdmin):
+    inlines = [ReadingAdminInline]
 
 admin.site.register(Class, ClassAdmin)
-admin.site.register(Reading, ReadingAdmin)
 
 from django.contrib.flatpages.models import FlatPage
 
@@ -65,3 +64,10 @@ class FlatPageAdmin(admin.ModelAdmin):
 
 admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, FlatPageAdmin)
+
+from leeps_website.misc.models import File
+
+class FileAdmin(admin.ModelAdmin):
+    list_display = ('file',)
+
+admin.site.register(File, FileAdmin)
