@@ -34,7 +34,7 @@ class Page(models.Model):
     title = models.CharField(max_length=50)
     slug = models.SlugField(help_text='Page can be accessed at /misc/page/&lt;slug&gt;')
     content = models.TextField(help_text='Markdown syntax allowed (http://daringfireball.net/projects/markdown/syntax)')
-    category = models.ForeignKey(Category, blank=True)
+    category = models.ForeignKey(Category)
     javascript = models.TextField(blank=True)
     css = models.TextField(blank=True)
 
