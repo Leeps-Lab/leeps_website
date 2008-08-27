@@ -1,6 +1,6 @@
 {% extends "classes/base.html" %}
 
-{% block main_content %}
+{% block content %}
     {% for class in classes %}
     <p><a href="{{ class.get_absolute_url }}">{{ class.name }}</a></p>
     {% endfor %}

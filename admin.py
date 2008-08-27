@@ -65,9 +65,19 @@ class FlatPageAdmin(admin.ModelAdmin):
 admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, FlatPageAdmin)
 
-from leeps_website.misc.models import File
+from leeps_website.misc.models import File, Page, Category
 
 class FileAdmin(admin.ModelAdmin):
     list_display = ('file',)
 
+class CategoryAdmin(admin.ModelAdmin):
+    list_display= ('name',)
+    prepopulated_fields = {'slug': ('name',)}
+
+class PageAdmin(admin.ModelAdmin):
+    list_display= ('title',)
+    prepopulated_fields = {'slug': ('title',)}
+
 admin.site.register(File, FileAdmin)
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Page, PageAdmin)

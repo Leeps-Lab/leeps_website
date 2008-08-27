@@ -1,6 +1,7 @@
 {% extends "projects/base.html" %}
 
-{% block onready %}
+{% block script %}
+$(function() {
     $(".protected").next().hide();
     $(".protected").click(function() {
         input = $(this).next();
@@ -24,9 +25,10 @@
             );
         return false;
     });
+});    
 {% endblock %}
 
-{% block main_content %}
+{% block content %}
     Sort by:
         <a href="/projects/by_title">Title</a>
         <a href="/projects/by_end_date">Date</a>

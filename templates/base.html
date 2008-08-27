@@ -13,12 +13,6 @@
         
         <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
         <script type="text/javascript">{% block script %}{% endblock %}</script>
-        <script type="text/javascript">
-            $(function(){
-                {% block onready %}
-                {% endblock %}
-            });
-        </script>
         
     </head>
     
@@ -40,7 +34,6 @@
         </div>
         <div id="content">
             <p>{% block content %}{% endblock %}</p>
-            <p>{% block main_content %}{% endblock %}</p>
         </div>
         <div id="footer-wrapper">
             <div id="footer">
