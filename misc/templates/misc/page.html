@@ -2,10 +2,17 @@
 
 {% load markup %}
 
- {% autoescape off %}
-{% block style %} {{ page.css }} {% endblock %}
-{% block script %}{{ page.javascript }} {% endblock %}
+{% block style %}
+{% autoescape off %}
+{{ page.css }}
 {% endautoescape %}
+{% endblock %}
+
+{% block script %}
+{% autoescape off %}
+{{ page.javascript }}
+{% endautoescape %}
+{% endblock %}
 
 {% block title %} {{ page.title }} {% endblock %}
 
