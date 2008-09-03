@@ -29,6 +29,7 @@ class Reading(models.Model):
     download = models.FileField(upload_to='readings/')
     cls = models.ForeignKey(Class)
     tag = models.CharField(max_length=100, blank=True)
+    active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title
