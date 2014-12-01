@@ -7,6 +7,7 @@ class Paper(models.Model):
     authors = models.ManyToManyField(Person)
     date = models.DateField()
     abstract = models.TextField()
+    keywords = models.CharField(max_length=200, blank=True)
     paper = models.FileField(blank=True, null=True, upload_to='papers/')
     data = models.FileField(blank=True, null=True, upload_to='papers/data/')
     code = models.FileField(blank=True, null=True, upload_to='papers/code/')
@@ -16,10 +17,12 @@ class Paper(models.Model):
                      If paper has no attached file(s), just put "No"''')
 
     def get_absolute_url(self):
+        if self.publish == 'true' and self.paper:
+            return self.paper.url
         return '/papers/'
     
     def __str__(self):
         return self.title
         
     class Meta:
-        ordering=('-date', 'title')
+        ordering = ['title']

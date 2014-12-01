@@ -26,7 +26,10 @@ class Project(Model):
 
     def get_absolute_url(self):
         return '/projects/'
-    
+   
+    class Meta:
+        ordering = ['-start_date']
+
 class Grant(Model):
     grant_id = CharField(max_length=30)
         

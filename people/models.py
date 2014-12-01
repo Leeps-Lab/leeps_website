@@ -33,7 +33,8 @@ class Person(models.Model):
         return self.name
         
     def get_absolute_url(self):
-        return '/people/%s' % self.slug
+        return '/people/details/%s' % self.slug
         
     class Meta:
+        ordering = ['name']
         verbose_name_plural = "people"

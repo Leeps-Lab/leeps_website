@@ -14,16 +14,19 @@ def index(request, archived=None, order=None):
     else:
         archived = True 
         template = 'projects/archived.html'
-        projects = Project.objects.filter(archived=archived)
+        projects = Project.objects.filter(archived=archived).order_by('-end_date')
     if order:
-        try:
-            projects = projects.order_by(order)
-        except OperationalError:
-            '''order column probably doesn't exist'''
-            pass
-    return render_to_response(template,
-            { 'projects' : projects },
-            context_instance=RequestContext(request))
+        projects = projects.order_by(order)
+    try:
+        return render_to_response(template,
+                { 'projects' : projects },
+                context_instance=RequestContext(request))
+    except:
+        projects = Project.objects.filter(
+                Q(archived=archived) | Q(archived__isnull=True))
+        return render_to_response(template,
+                { 'projects' : projects },
+                context_instance=RequestContext(request))
 
 def get_paper(request):
     if request.POST:
@@ -34,12 +37,13 @@ def get_paper(request):
     paper = Paper.objects.get(title=paper)
     password = request['password']
     if password == project.password:
+        url = ""
         if len(query) == 3:
             if query[2] == 'data':
-                url = paper.get_data_url()
+                url = paper.data.url()
             elif query[2] == 'code':
-                url = paper.get_code_url()
+                url = paper.code.url()
         else:
-            url = paper.get_paper_url()
+            url = paper.paper.url()
         return HttpResponse(url)
     return HttpResponse('error')

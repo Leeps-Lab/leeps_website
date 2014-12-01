@@ -17,7 +17,7 @@ def index(request):
         context_instance=RequestContext(request))
 
 def category(request, slug):
-    category = Category.objects.get(slug=slug)
+    category = get_object_or_404(Category, slug=slug)
     pages = Page.objects.filter(category=category)
     return render_to_response('misc/category.html',
         { 'category': category,
@@ -25,7 +25,7 @@ def category(request, slug):
         context_instance=RequestContext(request))
 
 def page(request, slug):
-    page = Page.objects.get(slug=slug)
+    page = get_object_or_404(Page, slug=slug)
     return render_to_response('misc/page.html',
         { 'page': page, },
         context_instance=RequestContext(request))

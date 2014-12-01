@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-
-{% block nav_projects %}
-<li id="current"><a href="/projects">Projects</a></li>
+{% block title %}Projects{% endblock %}
+{% block head_extra %}
+    {{ head_extra.super }}
+    <link href="/static/css/projects.css" rel="stylesheet" type="text/css"></link>
 {% endblock %}

@@ -15,13 +15,12 @@ def index(request):
 def details(request, class_name):
     cls = get_object_or_404(Class, slug=class_name)
     readings = Reading.objects.filter(cls=cls)
-    tags = {}
+    tags = set(["All"])
     for reading in readings:
-        tags[reading.tag] = ""
-    if None in tags:
-        del tags[None]
+        if reading.tag != None:
+            tags.add(reading.tag)
     return render_to_response('classes/details.html',
-            { 'class': cls, 'readings': readings, 'tags': ['All']+tags.keys()},
+            { 'class': cls, 'readings': readings, 'tags': tags},
         context_instance=RequestContext(request))
 
 def get_readings_by_tag(request, class_name, tag_name):

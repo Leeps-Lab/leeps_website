@@ -1,11 +1,7 @@
 # Django settings for leeps_website project.
-
 import os
-ROOT_DIR = os.getcwd()
 
-DEVEL = 'home' in ROOT_DIR
-
-DEBUG = DEVEL
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -16,28 +12,26 @@ MANAGERS = ADMINS
 
 # ENGINE: 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3'
 # NAME: Or path to database file if using sqlite3. or 'oracle'.
-if DEVEL:
-    DATABASE_ENGINE = 'sqlite3'
-    DATABASE_USER = ''
-    DATABASE_NAME = os.path.join(ROOT_DIR, 'leeps_website.db')
-    DATABASE_PASSWORD = ''
-else:
-    DATABASE_ENGINE = 'mysql'
-    DATABASE_USER = 'leeps'
-    DATABASE_NAME = 'leeps_website'
-    DATABASE_PASSWORD = '*leeps*'
-    ROOT_DIR = '/opt/local/var/leeps_website/'
+DATABASES = {
+	'default': {
+		  'ENGINE': 'django.db.backends.sqlite3',
+		  'USER': '',
+		  'NAME': '/var/www/leeps_website/sqlite.db',
+		  'PASSWORD': '',
+	}
+}
 # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_HOST = ''
+
+#"HOST":'',
 # Set to empty string for default. Not used with sqlite3.
-DATABASE_PORT = ''
+#"PORT":''
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be avilable on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Pacific'
+TIME_ZONE = 'America/Los_Angeles'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -51,29 +45,33 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.join(ROOT_DIR, 'site_media')
+MEDIA_ROOT = '/var/www/leeps_website/media'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-if DEVEL:
-    MEDIA_URL = '/site_media/'
-else:
-    MEDIA_URL = 'http://leeps.ucsc.edu/site_media/'
+MEDIA_URL = '/media/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
+ADMIN_MEDIA_PREFIX = '/static/admin/'
+
+STATIC_ROOT = os.path.join(os.getcwd(), 'static')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+)
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'uaeq(7p8p!3bzq8+mhwq*!l46*uyfnlcn*821e^_l5=s=ak@1@'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.load_template_source',
-    'django.template.loaders.app_directories.load_template_source',
-#     'django.template.loaders.eggs.load_template_source',
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -82,15 +80,20 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     'django.middleware.doc.XViewMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 )
 
 ROOT_URLCONF = 'leeps_website.urls'
 
-TEMPLATE_DIRS = (os.path.join(ROOT_DIR, 'templates'),)
+TEMPLATE_DIRS = ('/var/www/leeps_website/templates',)
+
+if os.getcwd() == '/home/www/leeps_website':
+    TEMPLATE_DIRS = ('/home/www/leeps_website/templates',)
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.auth',
+    'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.media',
+    'django.contrib.messages.context_processors.messages',
 )
 
 INSTALLED_APPS = (
@@ -102,10 +105,13 @@ INSTALLED_APPS = (
     'django.contrib.markup',
     'django.contrib.sitemaps',
     'django.contrib.flatpages',
+    'django.contrib.staticfiles',
     'leeps_website.papers',
     'leeps_website.people',
     'leeps_website.projects',
     'leeps_website.classes',
     'leeps_website.misc',
-    'leeps_website',
 )
+
+# disabled until SSL is working
+#SESSION_COOKIE_SECURE = True

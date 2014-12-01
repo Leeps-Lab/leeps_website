@@ -3,6 +3,8 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('leeps_website.papers.views',
     (r'^$', 'index'),
-    (r'^by_title/$', 'by_title'),
-    (r'^by_date/(?P<order>\w+)/$', 'by_date'),
+    (r'^sort-by-date/(?P<order>\w+)/$', 'sort_by_date'),
+    (r'^filter-by-keyword$', 'filter_by_keyword'),
+    (r'^filter-by-author$', 'filter_by_author'),
 )
+

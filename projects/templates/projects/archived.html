@@ -1,42 +1,16 @@
 {% extends "projects/base.html" %}
 
-{% block script %}
-$(function() {
-    $(".protected").next().hide();
-    $(".protected").click(function() {
-        input = $(this).next();
-        input.toggle();
-        return false;
-    });
-    $("input[type=submit]").click(function() {
-        name = $(this).prev().attr("name");
-        password = $(this).prev().attr("value");
-        $.post(
-            "/projects/get_paper/",
-            { "name" : name, "password" : password },
-            function(data) {
-                if (data != "error") {
-                    location.href = data;
-                } else {
-                    $('<p><small style="color: red">Incorrect password</small></p>').insertAfter(
-                        $("input[type=password]").next());
-                }
-            }
-            );
-        return false;
-    });
-});
-{% endblock %}
-
 {% block content %}
-    Sort by:
+    <h2>Project Archives</h2>
+    <p class="sort">Sort by:
         <a href="/projects/archived/by_title">Title</a>
         <a href="/projects/archived/by_end_date">Date</a>
-        <a href="/projects/archived/by_grant">Grant</a>
+        <a href="/projects/archived/by_grant">Grant</a></p>
     {% for project in projects %}
+        <div class="project">
         <h1>{{ project.title }}
         //
-        <small>
+        <span class="small">
         {% if project.start_date %}
             {{ project.start_date.year }} -
         {% endif %}
@@ -45,104 +19,80 @@ $(function() {
         {% else %}
             Present
         {% endif %}
-        </small>
+        </span>
         //
-        <small>
+        <span class="smaller">
         {{ project.grant }}
-        </small>
+        </span>
         </h1>
         <ul>
             {% for person in project.people.all %}
                 {% if person.website %}
-                    <a href="{{ person.website }}">
-                        {{ person }}
-                    </a>{% if not forloop.last %},{% endif %}
+                    <a href="{{ person.website }}">{{ person }}</a>{% if not forloop.last %},{% endif %}
                 {% else %}
                 {% if person.email %}
-                    <a href="mailto:{{ person.email }}">
-                        {{ person }}
-                    </a>{% if not forloop.last %},{% endif %}
+                    <a href="mailto:{{ person.email }}">{{ person }}</a>{% if not forloop.last %},{% endif %}
                 {% else %}
                     {{ person }}{% if not forloop.last %},{% endif %}
                 {% endif %}
                 {% endif %}
-            {% endfor %}
-            <p>{{ project.description }}</p>
-            {% if project.papers.all %}
-                <h2>Downloads</h2>
+                {% endfor %}
+            </ul>
+            {% if project.description %}
+            <div class="desc"><p>{{ project.description }}</p></div>
             {% endif %}
+            {% if project.papers.all %}
+            <ul><b>Downloads</b><br />
+                {% endif %}
             {% for paper in project.papers.all %}
-                <ul>
-                    <li>
                     {% ifequal project.protect_papers "true" %}
-                        <a class="protected" id="{{ paper }}" href="">
-                            {{ paper }}
-                        </a>
-                        <span>
-                        <ul>
-                            <li>
+                        <a class="protected" id="{{ paper }}" href="">{{ paper }}</a>
+                        <!--<span>
                             This paper requires a password to download.
                             You can <a href="mailto:leeps@ucsc.edu">mail us</a> to request access.
                             <form>
                                 <input type="password" name="{{ project }}_{{ paper }}"/>
                                 <input type="submit" value="Download"/>
                             </form>
-                            </li>
-                        </ul>
-                        </span>
+                        </span>-->
                     {% else %}
-                        <a href="{{ paper.get_paper_url }}">{{ paper }}</a>
+                    {% if paper.paper %}    
+                    <a href="{{ paper.paper.url }}">{{ paper }} (pdf)</a><br />
+                    {% endif %}
                     {% endifequal %}
-                    </li>
-                    {% if paper.get_data_url %}
-                        <li>
+                    {% if paper.data %}
                         {% ifequal project.protect_data "true" %}
-                            <a class="protected" id="{{ paper }}_data" href="">
-                                {{ paper }} - Data
-                            </a>
-                            <span>
-                            <ul>
-                                <li>
+                            <a class="protected" id="{{ paper }}_data" href="">{{ paper }} - Data</a>
+                            <!--<span>
                                 This data requires a password to download.
                                 You can <a href="mailto:leeps@ucsc.edu">mail us</a> to request access.
                                 <form>
                                     <input type="password" name="{{ project }}_{{ paper }}_data"/>
                                     <input type="submit" value="Download"/>
                                 </form>
-                                </li>
-                            </ul>
-                            </span>
+                            </span>-->
                         {% else %}
-                            <a href="{{ paper.get_data_url }}">{{ paper }} - Data</a>
+                        <a href="{{ paper.data.url }}">{{ paper }} (zip)</a><br />
                         {% endifequal %}
-                        </li>
                     {% endif %}
                     {% if paper.get_code %}
-                        <li>
                         {% ifequal project.protect_code "true" %}
-                            <a class="protected" id="{{ paper }}_code" href="">
-                                {{ paper }} - Source Code
-                            </a>
-                            <span>
-                            <ul>
-                                <li>
+                            <a class="protected" id="{{ paper }}_code" href="">{{ paper }} - Source Code</a>
+                            <!--<span>
                                 This data requires a password to download.
                                 You can <a href="mailto:leeps@ucsc.edu">mail us</a> to request access.
                                 <form>
                                     <input type="password" name="{{ project }}_{{ paper }}_code"/>
                                     <input type="submit" value="Download"/>
                                 </form>
-                                </li>
-                            </ul>
-                            </span>
+                            </span>-->
                         {% else %}
-                            <a href="{{ paper.get_code_url }}">{{ paper }} - Source Code</a>
+                        <a href="{{ paper.code.url }}">{{ paper }} (src)</a><br />
                         {% endifequal %}
-                        </li>
-                    {% endif %}
+                    {% endif %}        
+                    {% endfor %}
                 </ul>
-            {% endfor %}
-        </ul>
+    </div>
     {% endfor %}
     <a href="/projects/"><h1><u>Current</u></h1></a>
 {% endblock %}

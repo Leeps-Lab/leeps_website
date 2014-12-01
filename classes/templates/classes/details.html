@@ -17,8 +17,8 @@
         <li>
         <h3><em>{{ reading.title }}</em> // <small>Posted on {{ reading.date }}</small></h3>
         <ul style="list-style:none">
-            <li>{{ reading.description }}</li>
-            <li>- <a href="{{ reading.get_download_url }}">download</a></li>
+            <li>{{ reading.description|markdown }}</li>
+            <li>- <a href="{{ reading.download.url }}">download</a></li>
         </ul>
         <li>
     </ul>

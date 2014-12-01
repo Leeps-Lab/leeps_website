@@ -1,7 +1,0 @@
-{% extends "scriptr/base.html" %}
-
-{% block content %}
-    {% for script in scripts %}
-        <a href="{% url scriptr.views.details script.slug %}">{{ script.name }}</a>
-    {% endfor %}
-{% endblock %}
