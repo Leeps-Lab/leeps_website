@@ -1,0 +1,65 @@
+@charset "utf-8";
+/* project.css */
+
+.small {
+    color:#505050;
+}
+
+.smaller {
+    color:#909090;
+}
+
+
+ol, dl { 
+	padding-left:15px;
+	padding-right:15px;
+	margin: 0px;
+}
+
+h2 {
+	text-align: left;
+	margin-bottom: 0px;
+}
+
+.sort {
+    text-align: left;
+    padding-left: 15px;
+}
+
+h3, h5, h6 {
+	text-align:center;	
+}
+
+h1{
+	padding-left:15px;
+	padding-right:15px;
+	font-size:18px;
+}
+
+h4 {
+	margin-top: 5px;
+	padding-right:15px;
+}
+
+p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.project {
+	border-top: 10px solid #DDDEFF;
+}
+
+.project .desc {
+    background: rgb(218,228,222);
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 10px;
+    padding: 1px;
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+}
+
+ul {
+    margin-top: 0px;
+}
