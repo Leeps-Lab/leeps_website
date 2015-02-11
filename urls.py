@@ -40,7 +40,7 @@ urlpatterns = patterns('',
 
 urlpatterns += patterns('django.views.generic.simple',
     # Employee Request System application redirect
-    ('^apply', 'redirect_to', {'url': 'http://www.careercenter.ucsc.edu/ers/erspub/main.cfm?er_id=7311&jt=non_workstudy&action=displayER'}),
+    ('^apply', 'redirect_to', {'url': 'http://www.careercenter.ucsc.edu/ers/erspub/main.cfm?er_id=7658&jt=workstudy&action=displayER'}),
     # simple redirect
     ('^$', 'redirect_to', {'url': '/home/'}),
     (r'^calendar/$', 'redirect_to', {'url': 'http://econlab.ucsc.edu/public/show_calendar.php'}),
