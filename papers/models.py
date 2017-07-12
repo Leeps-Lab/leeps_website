@@ -5,6 +5,7 @@ from leeps_website.people.models import Person
 class Paper(models.Model):
     title = models.CharField(max_length=100)
     authors = models.ManyToManyField(Person)
+    #mainauthor = models.ForeignKey(Person,null=True,related_name='paperauthor')
     date = models.DateField()
     abstract = models.TextField()
     keywords = models.CharField(max_length=200, blank=True)

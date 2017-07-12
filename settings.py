@@ -111,7 +111,7 @@ INSTALLED_APPS = (
     'leeps_website.projects',
     'leeps_website.classes',
     'leeps_website.misc',
-)
+    'south')
 
 # disabled until SSL is working
 #SESSION_COOKIE_SECURE = True
