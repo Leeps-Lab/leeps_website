@@ -112,6 +112,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 STATIC_ROOT = os.path.join(BASE_DIR, '_static_root')
 STATIC_URL = '/static/'
 
