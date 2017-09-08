@@ -1,0 +1,30 @@
+{% extends "people/base.html" %}
+{% load markup %}
+
+{% block content %}
+    <h1>{{ person.name }} // <small>{{ person.title }}</small></h1>
+    <h2>About</h2>
+        <p>{{ person.bio|markdown }}</p>
+    <h2>Links</h2>
+    <ul>
+        <li><a href="{{ person.website }}">Website</a></li>
+        <li><a href="mailto:{{ person.email }}">Email</a></li>
+        {% if person.cv %}
+        <li><a href="{{ person.cv.url }}">Curriculum Vitae</a></li>
+        {% endif %}
+    </ul>
+    <h2>Classes</h2>
+    <ul>
+    {% for class in classes %}
+        <li><a href="{{ class.get_absolute_url }}">{{ class.name }}</a></li>
+    {% endfor %}
+    </ul>
+    <h2>Papers</h2>
+    <ul>
+    {% for paper in papers %}
+        {% if paper.paper %}
+        <li><a href="{{ paper.get_absolute_url }}">{{ paper.title }}</a></li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+{% endblock %}

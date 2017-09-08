@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<link rel="icon" type="image/png" href="/static/images/favicon.ico" />
+        <title>LEEPS - {% block title %}{% endblock %}</title>  
+		<link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="stylesheet" href="/static/css/SpryMenuBarHorizontal.css" />
+		<script src="/static/js/jquery.js" type="text/javascript"></script>
+		<script src="/static/js/SpryMenuBar.js" type="text/javascript"></script>
+		<script src="/static/js/tabletop.js" type="text/javascript"></script>
+		<script type="text/javascript">
+
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-34827677-1']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+			 var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+             })();
+             {% block script %}{% endblock %}
+            
+        </script>
+        <style type="text/css">
+            {% block css %}{% endblock %}
+        </style>
+        {% block head_extra %}{% endblock %}
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="header"><a href="/home/"><img src="/static/images/leeps_logo.png" alt="logo" width="120" height="90" id="logo" style="display:block;" /></a> 
+			<ul id="MenuBar1" class="MenuBarHorizontal">
+				<li><a href="/home/">Home</a></li>
+				<li><a href="/about/">About</a></li>
+				<li><a class="MenubarItemSubmenu" href="/people/faculty/">People</a>
+				<ul>
+					<li><a href="/people/faculty-staff/">Faculty and Staff</a></li>
+					<li><a href="/people/phd/">PhD Students</a></li>
+					<li><a href="/people/masters/">MS Students</a></li>
+					<li><a href="/people/undergraduate/">Undergraduate Students</a></li>
+				</ul>
+				</li>
+				<li><a href="/projects/">Projects</a></li>
+				<li><a href="/papers/">Papers</a></li>
+				<li><a href="/calendar/">Calendar</a></li>
+				<li><a href="/classes/">Classes</a></li>
+				<li><a href="/misc/">Misc</a></li>
+			</ul>
+			<!-- end .header --></div>
+		<div class="content">
+			<p>{% block content %}{% endblock %}</p>
+			<!-- end .content --></div>
+		<div class="footer">
+			{% block footer %}
+			<a href="mailto:leepslab@gmail.com">contact</a>
+			{% endblock %}
+
+			<!-- end .footer --></div>
+		<!-- end .container --></div>
+	<script type="text/javascript">
+		var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"/static/images/SpryMenuBarDownHover.gif", imgRight:"/static/images/SpryMenuBarRightHover.gif"});
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+{% extends "classes/base.html" %}
+{% load markup %}
+
+{% block content %}
+    <h1>{{ class.name }} // 
+        <small>
+            <a href="{{ class.professor.get_absolute_url }}">
+                Prof. {{ class.professor.name }}
+            </a>
+        </small>
+    </h1>
+    <p>{{ class.page|markdown }}</p>
+    <h2>Readings //<small>{% for tag in tags %} <a href="{{ class.get_absolute_url }}/{{ tag }}">{{ tag }}</a> //{% endfor %}</small></h2>
+    {% for reading in readings %}
+    {% if reading.active %}
+    <ul style="list-style:none">
+        <li>
+        <h3><em>{{ reading.title }}</em> // <small>Posted on {{ reading.date }}</small></h3>
+        <ul style="list-style:none">
+            <li>{{ reading.description|markdown }}</li>
+            <li>- <a href="{{ reading.download.url }}">download</a></li>
+        </ul>
+        <li>
+    </ul>
+    {% endif %}
+    {% endfor %}
+{% endblock %}

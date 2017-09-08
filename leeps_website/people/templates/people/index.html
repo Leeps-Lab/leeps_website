@@ -1,0 +1,48 @@
+{% extends "people/base.html" %}
+
+{% block content %}
+    {% for status in category %}
+        <h2>{{ category }}</h2>
+        <ul>
+            <li><h3>Active</h3></li>
+            <ul>
+            {% for person in status.active %}
+                {% if person.bio %}
+                    <li><a href="{{ person.get_absolute_url }}">{{ person.name }}</a>
+                {% else %}
+                {% if person.website %}
+                    <li><a href="{{ person.website }}">{{ person.name }}</a>
+                {% else %}
+                {% if person.email %}
+                    <li><a href="mailto:{{ person.email }}">{{ person.name }}</a>
+                {% else %}
+                    <li>{{ person.name }}
+                {% endif %}{% endif %}{% endif %}
+                {% if person.title %}
+                    - <em>{{ person.title }}</em></li>
+                {% endif %}        
+            {% endfor %}
+            </ul>
+            <li><h3>Emeriti</h3></li>
+            <ul>
+            {% for person in status.emeriti %}
+                {% if person.bio %}
+                    <li><a href="{{ person.get_absolute_url }}">{{ person.name }}</a>
+                {% else %}
+                {% if person.website %}
+                    <li><a href="{{ person.website }}">{{ person.name }}</a>
+                {% else %}
+                {% if person.email %}
+                    <li><a href="mailto:{{ person.email }}">{{ person.name }}</a>
+                {% else %}
+                    <li>{{ person.name }}
+                {% endif %}{% endif %}{% endif %}
+                {% if person.title %}
+                    - <em>{{ person.title }}</em></li>
+                {% endif %}        
+            {% endfor %}
+            </ul>
+            
+        </ul>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "misc/base.html" %}
+
+{% load markup %}
+
+{% block style %}
+{% autoescape off %}
+{{ page.css }}
+{% endautoescape %}
+{% endblock %}
+
+{% block script %}
+{% autoescape off %}
+{{ page.javascript }}
+{% endautoescape %}
+{% endblock %}
+
+{% block title %} {{ page.title }} {% endblock %}
+
+{% block content %} {{ page.content|markdown }} {% endblock %}

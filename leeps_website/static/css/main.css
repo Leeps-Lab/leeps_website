@@ -1,0 +1,88 @@
+@charset "utf-8";
+/* base.css */
+
+body {
+	font: 100%/1.4 "Segoe UI", sans-serif;
+	margin: 0;
+	padding: 0;
+	background:#B5CBEF;
+	color: #000;
+}
+
+/* ~~ Element/tag selectors ~~ */
+
+p, h1, h2, h3, h4 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+h2 {
+    font-size: 21px;    
+}
+
+
+
+
+a img { 
+	border: none;
+}
+
+a:link {
+	color:#414958;
+	text-decoration: underline; 
+}
+a:visited {
+	color: #4E5869;
+	text-decoration: underline;
+}
+a:hover, a:active, a:focus { 
+	text-decoration: none;
+}
+
+/* ~~ CONTAINER ~~ */
+.container {
+	width: 960px;
+	background: #FFF;
+	margin: 0 auto; 
+	/*border-style:solid;*/
+	border-color:#999;
+	border-left-width:thin;
+	border-right-width:thin;
+	border-bottom:none;
+	border-top:none;
+}
+
+/* ~~ HEADER ~~ */
+.header {
+/*	background:url(../images/header-bg.png);
+	background-repeat:repeat-x;
+*/
+	background-color: #FFD42A;
+}
+
+/* ~~ CONTENT ~~ */
+.content {
+	width: 960px;
+	margin: 10px, 0;
+	padding-top: 40px;
+}
+
+.footer {
+	padding: 10px 0;
+    background:#397BAB;
+	text-align:center;
+}
+
+/* ~~ miscellaneous float/clear classes ~~ */
+.fltrt {  /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+}
+.fltlft { /* this class can be used to float an element left in your page. The floated element must precede the element it should be next to on the page. */
+	float: left;
+}
+.clearfloat { /* this class can be placed on a <br /> or empty div as the final element following the last floated div (within the #container) if the #footer is removed or taken out of the #container */
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}

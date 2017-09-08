@@ -1,0 +1,53 @@
+{% extends "people/base.html" %}
+{% block title %}People - {{ category|capfirst }}{% endblock %}
+{% block content %}
+    {% if category == "faculty-staff" %}
+    <h2>People - Faculty and Staff</h2>
+    {% else %}
+    <h2>People - {{ category|capfirst }}</h2>
+    {% endif %}
+        <ul>
+        <h3>Active</h3>
+            <ul>
+            {% for person in people %}
+                {% if person.status == "A" %}
+                    {% if person.bio %}
+                    <li><a href="{{ person.get_absolute_url }}">{{ person.name }}</a>
+                    {% else %}
+                    {% if person.website %}
+                    <li><a href="{{ person.website }}">{{ person.name }}</a>
+                    {% else %}
+                    {% if person.email %}
+                    <li><a href="mailto:{{ person.email }}">{{ person.name }}</a>
+                    {% else %}
+                    <li>{{ person.name }}
+                    {% endif %}{% endif %}{% endif %}
+                    {% if person.title %}
+                    - <em>{{ person.title }}</em></li>
+                    {% endif %}          
+                {% endif %}
+            {% endfor %}
+            </ul>
+            <h3>Emeriti</h3>
+            <ul>
+            {% for person in people %}
+                {% if person.status == "E" %}
+                    {% if person.bio %}
+                    <li><a href="{{ person.get_absolute_url }}">{{ person.name }}</a>
+                    {% else %}
+                    {% if person.website %}
+                    <li><a href="{{ person.website }}">{{ person.name }}</a>
+                    {% else %}
+                    {% if person.email %}
+                    <li><a href="mailto:{{ person.email }}">{{ person.name }}</a>
+                    {% else %}
+                    <li>{{ person.name }}
+                    {% endif %}{% endif %}{% endif %}
+                    {% if person.title %}
+                    - <em>{{ person.title }}</em></li>
+                    {% endif %}          
+                {% endif %}
+            {% endfor %}
+            </ul>    
+        </ul>
+{% endblock %}

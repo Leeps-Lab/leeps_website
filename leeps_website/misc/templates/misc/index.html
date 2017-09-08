@@ -1,0 +1,14 @@
+{% extends "misc/base.html" %}
+
+{% block content %}
+<ul style="list-style:none">
+    {% for category, pages in hierarchy.items %}
+    <h2><li><a href="/misc/category/{{ category.slug }}">{{ category.name }}</a></li></h2>
+    <ul>
+        {% for page in pages %}
+        <li><a href="/misc/page/{{ page.slug }}">{{ page.title }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</ul>
+{% endblock %}

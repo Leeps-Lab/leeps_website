@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block title %}Papers{% endblock %}
+{% load markup %}
+
+{% block script %}
+$(function() {
+    $("select").change(function() {
+        $(this).parent().submit()
+    })
+})
+{% endblock %}
+
+{% block head_extra %}
+    {{ head_extra.super }}
+    <link href="/static/css/papers.css" rel="stylesheet" type="text/css"></link>
+{% endblock %}
+
+{% block css %}/*
+.sort-label {
+    margin: 0;
+    margin-left: 15px;
+    padding: 0;
+}
+.sort-label, select, input {
+    float: left;
+}
+#papers {
+    margin-top: 60px;
+    clear: both;
+}
+.paper {
+    border-top: 10px solid #DDDEFF;
+}
+.abstract {
+    padding: 1px;
+    margin-left: 40px;
+    margin-right: 40px;
+    background: rgb(218,228,222);
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+}
+.abstract h4 {
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+.abstract p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.small {
+    color:#909090;
+}*/
+ 
+{% endblock %}
+
+{% block content %}
+	<h2>Papers</h2>
+    {% ifequal order "asc" %}
+        <p>Sort: <a href="/papers/sort-by-date/desc/">Latest First</a></p>
+    {% endifequal %}
+    {% ifequal order "desc" %}
+        <p>Sort: <a href="/papers/sort-by-date/asc/">Earliest First</a></p>
+    {% endifequal %}
+    <p class="sort-label">Author:</p>
+    <form id="author_filter" method="get" action="/papers/filter-by-author">
+        <select name="author">
+            {% for person, selected in authors %}
+            <option value="{{ person.slug }}" {% if selected %}selected="selected"{% endif %}>{{ person.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Filter" />
+    </form>
+    <p class="sort-label">Keyword:</p>
+    <form id="keyword_filter" method="get" action="/papers/filter-by-keyword">
+        <select name="keyword">
+            {% for keyword, selected in keywords %}
+            <option value="{{ keyword }}" {% if selected %}selected="selected"{% endif %}>{{ keyword }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Filter" />
+    </form>
+    <div id="papers">
+        {% for paper in papers %}
+        <div class="paper">
+            <h3 id="{{ paper.title }}">{{ paper.title }} // <span class="small">{{ paper.date }}</span></h3>
+            <ul>Authors: 
+            {% for person in paper.authors.all %}
+                {% if person.website %}
+                    <a href="{{ person.website }}">{{ person }}</a>{% if not forloop.last %},{% endif %}
+                {% else %}
+                {% if person.email %}
+                    <a href="mailto:{{ person.email }}">{{ person }}</a>{% if not forloop.last %},{% endif %}
+                {% else %}
+                    {{ person }}{% if not forloop.last %},{% endif %}
+                {% endif %}
+                {% endif %}
+            {% endfor %}
+            </ul>
+            <div class="abstract">
+                <h4>Abstract</h4>
+                {{ paper.abstract|markdown }}
+            </div>
+            {% if paper.keywords %}
+            <ul>Keywords: <i>{{ paper.keywords }}</i></ul>
+            {% endif %}
+            {% ifequal paper.publish "true" %}
+            {% if paper.paper or paper.data or paper.code %}    
+            <ul><b>Downloads</b><br />
+                {% if paper.paper %}
+                <a href="{{ paper.paper.url }}">{{ paper }} (pdf) </a><br />
+                {% endif %}
+                {% if paper.data %}
+                <a href="{{ paper.data.url }}">{{ paper }} (zip) </a><br />
+                {% endif %}
+                {% if paper.code %}
+                <a href="{{ paper.code.url }}">{{ paper }} (src) </a><br />
+                {% endif %}
+            </ul>
+            {% endif %}
+            {% endifequal %}
+            <ul>
+         </div>
+         {% endfor %}
+    </div>
+{% endblock %}
+
