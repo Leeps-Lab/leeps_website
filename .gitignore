@@ -1,0 +1,4 @@
+/_static_root
+**/__pycache__
+/media
+sqlite.db
