@@ -14,9 +14,9 @@ urlpatterns = [
     url(r'^projects/', include('leeps_website.projects.urls')),
     url(r'^people/', include('leeps_website.people.urls')),
 
-    url(r'^calendar/$', RedirectView.as_view(url='http://econlab.ucsc.edu/public/show_calendar.php'))
+    url(r'^calendar/$', RedirectView.as_view(url='http://econlab.ucsc.edu/public/show_calendar.php')),
 
-    url(r'^$', RedirectView.as_view(url='/home'))
+    url(r'^$', RedirectView.as_view(url='/home')),
     
 ]
 
