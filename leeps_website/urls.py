@@ -15,7 +15,8 @@ urlpatterns = [
     url(r'^people/', include('leeps_website.people.urls')),
 
     url(r'^calendar/$', RedirectView.as_view(url='https://econlab.ucsc.edu/public/show_calendar.php')),
-    url(r'^redwood-wiki/$', RedirectView.as_view(url='https://github.com/Leeps-Lab/RedwoodFramework/wiki')),
+    url(r'^redwood-wiki/', RedirectView.as_view(url='https://github.com/Leeps-Lab/RedwoodFramework/wiki')),
+    url(r'^cong/', RedirectView.as_view(url='https://github.com/Leeps-Lab/ConG/wiki')),
 
     url(r'^$', RedirectView.as_view(url='/home')),
 ]
