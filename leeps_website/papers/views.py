@@ -24,7 +24,7 @@ def sort_by_date(request, order):
         { 'papers': papers, 'order': order, 'keywords' : get_keywords(), 'authors' : get_authors() })
 
 def filter_by_author(request):
-    author = request.REQUEST["author"]
+    author = request.GET["author"]
     if author == "any":
         author = ""
     papers = list(Paper.objects.filter(authors__slug__icontains=author))
@@ -34,7 +34,7 @@ def filter_by_author(request):
             { 'papers': papers, 'order': 'desc', 'keywords' : get_keywords(), 'authors': get_authors(selected=author) })
 
 def filter_by_keyword(request):
-    keyword = request.REQUEST["keyword"]
+    keyword = request.GET["keyword"]
     if keyword == "Any":
         keyword = ""
     papers = list(Paper.objects.filter(keywords__icontains=keyword))
