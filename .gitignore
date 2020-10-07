@@ -2,3 +2,6 @@
 **/__pycache__
 /media
 sqlite.db
+venv
+**/*.pyc
+.python-version
